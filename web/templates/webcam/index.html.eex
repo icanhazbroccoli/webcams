@@ -1,0 +1,30 @@
+<h2>Listing webcams</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for webcam <- @webcams do %>
+    <tr>
+      <td><%= webcam.name %></td>
+      <td><%= webcam.description %></td>
+      <td><%= webcam.user_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: webcam_path(@conn, :show, webcam), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: webcam_path(@conn, :edit, webcam), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: webcam_path(@conn, :delete, webcam), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New webcam", to: webcam_path(@conn, :new) %>

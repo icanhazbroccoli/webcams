@@ -1,0 +1,23 @@
+<h2>Show webcam</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @webcam.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @webcam.description %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @webcam.user_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: webcam_path(@conn, :edit, @webcam) %>
+<%= link "Back", to: webcam_path(@conn, :index) %>
