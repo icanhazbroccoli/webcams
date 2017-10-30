@@ -30,12 +30,12 @@ config :whitebox, Whitebox.Repo,
   database: "gonano",
   pool_size: 10
 
-config :guardian, Guardian,
-  issuer: "Whitebox.#{Mix.env}",
-  ttl: {1, :days},
-  verify_issuer: true,
-  serializer: Protego.Auth.GuardianSerializer,
-  secret_key: "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a"
+# config :guardian, Guardian,
+#   issuer: "Whitebox.#{Mix.env}",
+#   ttl: {1, :days},
+#   verify_issuer: true,
+#   serializer: Protego.Auth.GuardianSerializer,
+#   secret_key: "01c1d6f4083d8aa5c7b8c246ade95139620ef8effb009edde934e0ec3b28090a"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

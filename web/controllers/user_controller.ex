@@ -1,7 +1,7 @@
 defmodule Whitebox.UserController do
   use Whitebox.Web, :controller
 
-  # plug :authenticate when action in [:index, :show, :edit, :update, :delete]
+  plug :authenticate when action in [:index, :show, :edit, :update, :delete]
 
   alias Whitebox.User
 
@@ -16,7 +16,7 @@ defmodule Whitebox.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
       {:ok, user} ->
@@ -66,13 +66,13 @@ defmodule Whitebox.UserController do
     |> redirect(to: user_path(conn, :index))
   end
 
-  defp authenticate(conn) do
+  defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
     else
       conn
       |> put_flash(:error, "You must be logged in to access this page")
-      |> redirect(to: index_path(conn, :index))
+      |> redirect(to: page_path(conn, :index))
       |> halt()
     end
   end

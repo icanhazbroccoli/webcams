@@ -2,6 +2,7 @@ defmodule Whitebox.Webcam do
   use Whitebox.Web, :model
 
   @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type Ecto.UUID
   @derive {Phoenix.Param, key: :id}
 
   schema "webcams" do
@@ -18,6 +19,6 @@ defmodule Whitebox.Webcam do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :description])
-    |> validate_required([:name, :description])
+    |> validate_required([:name])
   end
 end

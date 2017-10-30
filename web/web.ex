@@ -36,6 +36,7 @@ defmodule Whitebox.Web do
 
       import Whitebox.Router.Helpers
       import Whitebox.Gettext
+      import Whitebox.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -58,6 +59,7 @@ defmodule Whitebox.Web do
   def router do
     quote do
       use Phoenix.Router
+      import Whitebox.Auth, only: [authenticate_user: 2]
     end
   end
 

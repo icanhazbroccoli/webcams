@@ -17,12 +17,19 @@ defmodule Whitebox.Router do
   scope "/", Whitebox do
     pipe_through :browser # Use the default browser stack
     resources "/users", UserController
-    resources "/webcams", WebcamController
     get "/", PageController, :index
   end
 
-  scope "/auth" do
+  scope "/dashboard", Whitebox do
+    pipe_through [:browser, :authenticate_user]
+    resources "/webcams", WebcamController
+  end
+
+  scope "/auth", Whitebox do
     pipe_through :browser
+    get    "/login",  SessionController, :new
+    post   "/login",  SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
