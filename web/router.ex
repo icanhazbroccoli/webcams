@@ -16,7 +16,6 @@ defmodule Whitebox.Router do
 
   scope "/", Whitebox do
     pipe_through :browser # Use the default browser stack
-    resources "/users", UserController
     get "/", PageController, :index
   end
 
@@ -27,6 +26,8 @@ defmodule Whitebox.Router do
 
   scope "/auth", Whitebox do
     pipe_through :browser
+    get "/register", UserController, :new
+    post "/register", UserController, :create
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
